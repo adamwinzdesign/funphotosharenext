@@ -9,3 +9,6 @@ all normal responses to install questions except next defaults to no to eslint b
 
 npm install @clerk/nextjs  
 added middleware.ts to root directory
+added .env.local and claimed project with clerk
+
+middleware does not protect routes by default with clerk, so we updated middleware.ts to include a test protected route.
