@@ -46,6 +46,7 @@ export default function RootLayout({
             </SignedOut>
             <SignedIn>
               <Link href={"/admintest"}>Admin Test</Link>
+              <Link href={"/photo/upload"}>Upload Photo</Link>
               <UserButton />
             </SignedIn>
           </header>
