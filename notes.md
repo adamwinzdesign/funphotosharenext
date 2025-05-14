@@ -20,3 +20,12 @@ added middleware.ts to root directory
 added .env.local and claimed project with clerk
 
 middleware does not protect routes by default with clerk, so we updated middleware.ts to include a test protected route.
+
+form and data validation, first installed for actions -> send contact email, will be installed for additional validation for photo info
+npm i zod
+
+form and other prebuilt components
+npx shadcn@latest init
+selected legacy peer deps
+npx shadcn@latest add form
+selected legacy peer deps
