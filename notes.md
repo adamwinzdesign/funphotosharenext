@@ -29,3 +29,7 @@ npx shadcn@latest init
 selected legacy peer deps
 npx shadcn@latest add form
 selected legacy peer deps
+npx shadcn@latest add textarea
+
+emailjs
+npm install --save @emailjs/browser
