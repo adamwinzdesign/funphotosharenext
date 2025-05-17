@@ -28,11 +28,45 @@ export type ActionResponse = {
   success: boolean;
   message: string;
   errors?: Record<string, string[]>;
-  error: string;
+  error?: string;
 };
 
-// export async function createContact(
-//   data: ContactData
-// ): Promise<ActionResponse> {
+export async function createContact(
+  data: ContactData
+): Promise<ActionResponse> {
+  try {
+    // optionally, check for signed in user here.  Currently /contact is not a protected route
+    // validate with zod
+    const validationResult = ContactSchema.safeParse(data);
+    if (!validationResult.success) {
+      return {
+        success: false,
+        message: "Validation failed",
+        errors: validationResult.error.flatten().fieldErrors,
+      };
+    }
 
-// }
+    // create contact with validated data
+    const validatedData = validationResult.data;
+    await db.insert(contacts).values({
+      name: validatedData.name,
+      email: validatedData.email,
+      message: validatedData.message,
+    });
+
+    // refresh cache
+    revalidateTag("contacts");
+
+    return {
+      success: true,
+      message: "Contact sent successfully.",
+    };
+  } catch (error) {
+    console.error("Error creating contact: ", error);
+    return {
+      success: false,
+      message: "An error occurred creating a contact",
+      error: "Failed to create contact",
+    };
+  }
+}
