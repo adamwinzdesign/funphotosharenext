@@ -33,3 +33,7 @@ npx shadcn@latest add textarea
 
 emailjs
 npm install --save @emailjs/browser
+
+drizzle
+npm i drizzle-orm @neondatabase/serverless
+npm i -D drizzle-kit
