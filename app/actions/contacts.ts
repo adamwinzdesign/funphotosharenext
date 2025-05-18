@@ -7,6 +7,8 @@ import { eq } from "drizzle-orm";
 import { z } from "zod";
 import { revalidateTag } from "next/cache";
 
+import emailjs from "@emailjs/browser";
+
 // define zod schema for contact validation
 const ContactSchema = z.object({
   name: z
@@ -46,7 +48,7 @@ export async function createContact(
       };
     }
 
-    // create contact with validated data
+    // create contact in db with validated data
     const validatedData = validationResult.data;
     await db.insert(contacts).values({
       name: validatedData.name,

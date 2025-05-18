@@ -2,14 +2,21 @@
 // https://www.emailjs.com/docs/examples/reactjs/
 // https://ui.shadcn.com/docs/components/form
 
-import emailjs from "@emailjs/browser";
-import { Button } from "@/components/ui/button";
-import { Form, FormLabel, FormItem } from "@/components/ui/form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+// modeled after app/issues/new/page.tsx, really just houses the NewIssue/NewContactForm component
 
-const contactPage = () => {
-  return <h1>Contact Page! Not protected!</h1>;
+import Link from "next/link";
+import { Suspense } from "react";
+
+const ContactPage = () => {
+  return (
+    <div>
+      <Link href="/">Back to Home</Link>
+      <h1>I would love to hear from you!</h1>
+      <Suspense fallback={<div>Loading...</div>}>
+        {/* <NewContactForm /> */}
+      </Suspense>
+    </div>
+  );
 };
 
-export default contactPage;
+export default ContactPage;
